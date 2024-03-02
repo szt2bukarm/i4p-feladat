@@ -12,8 +12,8 @@ const encrpytMessage = function(message,key) {
         const keyIndex = alphabet.indexOf(key[i]);
         let index;
         messageIndex + keyIndex > 27 ? index = messageIndex + keyIndex % 27 : index = messageIndex + keyIndex
+        if (index == 27) index = 0
         console.log(index);
-        console.log(alphabet[index]);
         encryptedMessage += alphabet[index];
     }
 
