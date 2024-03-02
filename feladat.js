@@ -46,3 +46,14 @@ const decrpytMessage = function(encryptedMessage,key) {
 
 console.log(encrpytMessage('helloworld','abcdefgijkl'));
 console.log(decrpytMessage('hfnosauzun','abcdefgijkl'));
+
+// 2. FELADAT
+
+let words;
+const loadTxt = async function() {
+    const res = await fetch("words.txt");
+    const text = await res.text();
+    words = text.split('\n');
+}
+await loadTxt()
+console.log(words);
