@@ -29,4 +29,21 @@ const encrpytMessage = function(message,key) {
     return encryptedMessage;
 }
 
+const decrpytMessage = function(encryptedMessage,key) {
+    let decrpytedMessage = "";
+
+    for (let i = 0; i < encryptedMessage.length; i++) {
+        const messageIndex = alphabet.indexOf(encryptedMessage[i]);
+        const keyIndex = alphabet.indexOf(key[i]);
+
+        let reverted;
+        if (messageIndex == 0) reverted = 0;
+        else reverted = messageIndex - keyIndex;
+        console.log(reverted);
+        decrpytedMessage += alphabet[reverted];
+    }
+    console.log(decrpytedMessage);
+}
+
 console.log(encrpytMessage('helloworld','abcdefgijkl'));
+decrpytMessage('hfnosauzun','abcdefgijkl');
