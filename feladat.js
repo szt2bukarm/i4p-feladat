@@ -22,7 +22,6 @@ const encrpytMessage = function(message,key) {
         }
 
         if (index == 27) index = 0
-        console.log(index);
         encryptedMessage += alphabet[index];
     }
 
@@ -38,12 +37,12 @@ const decrpytMessage = function(encryptedMessage,key) {
 
         let reverted;
         if (messageIndex == 0) reverted = 0;
+        if (messageIndex - keyIndex < 0) reverted = messageIndex - keyIndex + 27
         else reverted = messageIndex - keyIndex;
-        console.log(reverted);
         decrpytedMessage += alphabet[reverted];
     }
-    console.log(decrpytedMessage);
+    return decrpytedMessage;
 }
 
 console.log(encrpytMessage('helloworld','abcdefgijkl'));
-decrpytMessage('hfnosauzun','abcdefgijkl');
+console.log(decrpytMessage('hfnosauzun','abcdefgijkl'));
