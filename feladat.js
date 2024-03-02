@@ -44,10 +44,12 @@ const decrpytMessage = function(encryptedMessage,key) {
     return decrpytedMessage;
 }
 
-console.log(encrpytMessage('helloworld','abcdefgijkl'));
-console.log(decrpytMessage('hfnosauzun','abcdefgijkl'));
+// console.log(encrpytMessage('curiosity killed the cat','abcdefgijklmnopqrstuvwxyz'));
+// console.log(encrpytMessage('early bird catches the worm','abcdefgijklmnopqrstuvwxyz'));
+// console.log(decrpytMessage('cvtlsxoagjvuyzttqk yuyxq','abcdefgijklmnopqrstuvwxyz'));
+console.log(decrpytMessage('ebtob ','abcdef'));
 
-// 2. FELADAT
+// 2. FELADAT   
 
 let words;
 const loadTxt = async function() {
@@ -57,3 +59,50 @@ const loadTxt = async function() {
 }
 await loadTxt()
 console.log(words);
+    // early
+    // ebtob
+    // cvtls
+// const findKey = function(msg1,msg2,words,knownWord) {
+//     let key = "";
+//     let knownLetters = knownWord.split('');
+
+
+//     console.log(knownLetters);
+//     let 
+//     for (let i = 0; i < knownWord.length; i++) {
+//         // check msg1
+//         let pushBy;
+
+//     }
+
+//     // console.log(pushByIndex);
+// }
+
+function findKey(encryptedMessage1, encryptedMessage2,words,knownWord) {
+    let key = '';
+    let knownLetters = knownWord.split('');
+    let msg1Letters = []
+    console.log(knownLetters);
+    for (let i = 0; i < knownWord.length; i++) {
+        msg1Letters.push(encryptedMessage1[i])        
+    }
+    console.log(msg1Letters);
+    
+    let partialKey = ""
+    knownLetters.forEach((char,index) => {
+        let pushedBy = alphabet.indexOf(msg1Letters[index]) - alphabet.indexOf(char)
+        pushedBy < 0 ? pushedBy = 27 - Math.abs(pushedBy) : pushedBy
+        partialKey += alphabet[pushedBy]
+
+    })
+    
+    console.log(decrpytMessage(encryptedMessage1.slice(0,knownWord.length),partialKey));
+    console.log(decrpytMessage(encryptedMessage2.slice(0,knownWord.length),partialKey));
+}
+
+const encryptedMessage1 = "ebtobehq nkongrxvjsmb wtmql";
+const encryptedMessage2 = "cvtlsxoagjvuyzttqk yuyxq";
+const knownWord = "early "
+
+const key = findKey(encryptedMessage1, encryptedMessage2,words,knownWord);
+
